@@ -177,7 +177,7 @@ Both `/wallet/convert` and `/wallet/trade` execute the same atomic currency swap
 
 ---
 
-## 📌 Key Assumptions
+## Key Assumptions
 
 1. **Initial balance is 0** — users fund their wallets explicitly.
 2. **Funding is direct** — no payment gateway integration. Funding is treated as a direct credit (e.g., bank transfer confirmation received by another service).
@@ -185,10 +185,11 @@ Both `/wallet/convert` and `/wallet/trade` execute the same atomic currency swap
 4. **No fractional OTP resend limit** — unlimited resends are allowed; each resend invalidates previous OTPs.
 5. **`synchronize: true` in development** — TypeORM auto-creates tables from entities. **For production**, set `synchronize: false` and use TypeORM migrations.
 6. **Email delivery is best-effort** — if the email provider fails during registration, the OTP is logged to console in non-production mode so development is not blocked.
+7. 
 
 ---
 
-## 🧪 Tests
+## Tests
 
 Unit tests cover the three most critical services:
 
@@ -200,7 +201,7 @@ Unit tests cover the three most critical services:
 
 ---
 
-## 📈 Scalability Considerations
+## Scalability Considerations
 
 - **Horizontal scaling**: JWT is stateless, so multiple instances can run behind a load balancer with no session affinity.
 - **Cache**: Replace in-memory cache with **Redis** (`@nestjs/cache-manager` + `cache-manager-redis-store`) for shared cache across instances.
