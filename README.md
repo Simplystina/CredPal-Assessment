@@ -71,8 +71,8 @@ npm run start:dev
 npm run build && npm run start:prod
 ```
 
-The API is available at `http://localhost:3000/api`  
-Swagger docs are at `http://localhost:3000/api/docs`
+The live url is available at `https://credpal-assessment.onrender.com`
+The live swagger link is available at `https://credpal-assessment.onrender.com/api/docs`
 
 ### 5. Run Tests
 
@@ -86,7 +86,7 @@ npm run test:cov
 
 ---
 
-## 📡 API Documentation
+## API Documentation
 
 Interactive Swagger documentation is available at **`/api/docs`** when the app is running.
 
@@ -145,7 +145,7 @@ GET /api/transactions?page=1&limit=20&type=CONVERSION
 
 ---
 
-## 🏗 Architectural Decisions
+## Architectural Decisions
 
 ### Database: PostgreSQL
 ACID compliance is essential for financial transactions. PostgreSQL's support for row-level locking and advisory locks makes it ideal for preventing race conditions in concurrent wallet operations.
@@ -208,6 +208,7 @@ Unit tests cover the three most critical services:
 - **Database connection pool**: TypeORM uses a connection pool by default. Tune `extra.max` for high-concurrency scenarios.
 - **DB migrations**: Replace `synchronize: true` with TypeORM migration files for safe schema evolution in production.
 - **Rate limiting**: The global `ThrottlerGuard` (100 req/min per IP) provides basic protection. Scale with Redis-backed throttler for distributed deployments.
+-- **Setting up external Redis** : It will be good to set up external redis instead of using in memory cache for caching and rate limiting. This will help to scale the application on different servers and also improve the performance. 
 
 ---
 
